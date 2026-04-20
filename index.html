@@ -1,339 +1,563 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Portfolio | Jessa Hilardino</title>
+<!DOCTYPE html>  
+<html lang="en">  
+<head>    
+<meta charset="UTF-8">  
+<meta name="viewport" content="width=device-width, initial-scale=1.0">  
+<title>My Portfolio | Jessa Hilardino</title>  <style>  
+  
+/* GOOGLE FONT */  
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');  
+  
+/* BACKGROUND ANIMATION */  
+body {  
+  margin: 0;  
+  font-family: 'Poppins', sans-serif;  
+  color: #2d1b3d;  
+  overflow-x: hidden;  
+  background: linear-gradient(135deg, #f3e8ff, #e9d5ff, #ddd6fe);  
+}  
+  
+/* FLOATING BUBBLES */  
+body::before {  
+  content: "";  
+  position: fixed;  
+  width: 200%;  
+  height: 200%;  
+  background: radial-gradient(circle, rgba(168,85,247,0.15) 20%, transparent 20%) repeat;  
+  background-size: 100px 100px;  
+  animation: moveBg 20s linear infinite;  
+  z-index: -1;  
+}  
+  
+@keyframes moveBg {  
+  from { transform: translate(0,0); }  
+  to { transform: translate(-200px,-200px); }  
+}  
+  
+h1, h2, h3 {  
+  color: #7c3aed;  
+}  
+  
+/* HEADER */  
+header {  
+  background: rgba(255,255,255,0.7);  
+  padding: 15px;  
+  text-align: center;  
+  position: sticky;  
+  top: 0;  
+  backdrop-filter: blur(10px);  
+}  
+  
+nav a {  
+  color: #5b21b6;  
+  margin: 0 12px;  
+  text-decoration: none;  
+  font-weight: 600;  
+  transition: 0.3s;  
+}  
+  
+nav a:hover {  
+  color: #a855f7;  
+  text-shadow: 0 0 10px #c084fc;  
+}  
+  
+/* CONTAINER */  
+.container {  
+  width: 90%;  
+  max-width: 900px;  
+  margin: auto;  
+}  
+  
+/* CARDS */  
+.skills, .output-card, .contact {  
+  background: rgba(255,255,255,0.85);  
+  border-radius: 18px;  
+  padding: 20px;  
+  margin-bottom: 30px;  
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);  
+  transition: 0.4s;  
+}  
+  
+.skills:hover, .output-card:hover {  
+  transform: translateY(-5px) scale(1.01);  
+  box-shadow: 0 10px 25px rgba(168,85,247,0.3);  
+}  
+  
+/* PROFILE */  
+.profile {  
+  text-align: center;  
+  padding: 40px 20px;  
+  animation: fadeIn 1.5s ease;  
+  position: relative; /* needed for sparkles */  
+}  
+  
+.profile img {  
+  width: 120px;  
+  height: 120px;  
+  border-radius: 50%;  
+  border: 2px solid #a855f7;  
+  object-fit: cover;  
+  transition: 0.4s;  
+}  
+  
+.profile img:hover {  
+  transform: scale(1.1);  
+}  
+  
+/* ===== ADDED WELCOME ANIMATION ===== */  
+#welcome-text {  
+  font-size: 28px;  
+  margin: 10px 0;  
+  background: linear-gradient(270deg, #a855f7, #ec4899, #f59e0b, #22c55e, #3b82f6, #a855f7);  
+  background-size: 1200% 1200%;  
+  -webkit-background-clip: text;  
+  -webkit-text-fill-color: transparent;  
+  animation: rainbowMove 6s ease infinite, glowPulse 2s ease-in-out infinite;  
+  border-right: 3px solid #a855f7;  
+  white-space: nowrap;  
+  overflow: hidden;  
+  width: fit-content;  
+  margin-left: auto;  
+  margin-right: auto;  
+}  
+  
+@keyframes rainbowMove {  
+  0% { background-position: 0% 50%; }  
+  50% { background-position: 100% 50%; }  
+  100% { background-position: 0% 50%; }  
+}  
+  
+@keyframes glowPulse {  
+  0% { text-shadow: 0 0 5px #a855f7; }  
+  50% { text-shadow: 0 0 20px #ec4899; }  
+  100% { text-shadow: 0 0 5px #a855f7; }  
+}  
+  
+/* SPARKLES */  
+.sparkle {  
+  position: absolute;  
+  width: 6px;  
+  height: 6px;  
+  background: #a855f7;  
+  border-radius: 50%;  
+  animation: sparkleAnim 2s infinite;  
+}  
+  
+@keyframes sparkleAnim {  
+  0% {opacity:1; transform:scale(1);}  
+  100% {opacity:0; transform:scale(2);}  
+}  
+/* ===== END ADD ===== */  
+  
+/* SKILLS */  
+.skill-list {  
+  display: flex;  
+  flex-wrap: wrap;  
+  justify-content: center;  
+  gap: 10px;  
+}  
+  
+.skill {  
+  background: #ede9fe;  
+  border: 1px solid #c4b5fd;  
+  padding: 8px 15px;  
+  border-radius: 10px;  
+  transition: 0.3s;  
+}  
+  
+.skill:hover {  
+  background: #a855f7;  
+  color: white;  
+}  
+  
+/* PHOTOS */  
+.photo-gallery, .output-gallery {  
+  display: flex;  
+  flex-wrap: wrap;  
+  justify-content: center;  
+  gap: 15px;  
+}  
+  
+.photo-gallery img,  
+.output-gallery img {  
+  width: 180px;  
+  height: 120px;  
+  border-radius: 12px;  
+  object-fit: cover;  
+}  
+  
+/* CERTIFICATES */  
+.output-card img {  
+  width: 100%;  
+  border-radius: 10px;  
+  margin-bottom: 10px;  
+}  
+  
+/* VIDEOS */  
+.tutorials iframe {  
+  width: 300px;  
+  height: 180px;  
+  margin: 10px;  
+  border-radius: 12px;  
+}  
+  
+/* BUTTON */  
+button {  
+  background: linear-gradient(45deg, #a855f7, #7c3aed);  
+  color: white;  
+  border: none;  
+  padding: 8px 15px;  
+  border-radius: 8px;  
+  cursor: pointer;  
+}  
+  
+/* INPUT */  
+input, textarea {  
+  padding: 10px;  
+  border-radius: 8px;  
+  border: 1px solid #c4b5fd;  
+  width: 100%;  
+}  
+  
+form {  
+  display: flex;  
+  flex-direction: column;  
+  gap: 10px;  
+}  
+  
+/* FOOTER */  
+footer {  
+  text-align: center;  
+  padding: 10px;  
+  background: rgba(255,255,255,0.7);  
+}  
+  
+@keyframes fadeIn {  
+  from {opacity: 0;}  
+  to {opacity: 1;}  
+}  
+  
+</style>  </head>  <body>  <header>  
+  <nav>  
+    <a href="#about">Home</a>  
+    <a href="#skills">Skills</a>  
+    <a href="#photos">Photos</a>  
+    <a href="#resume">Resume</a>  
+    <a href="#certificates">Certificates</a>  
+    <a href="#outputs">Outputs</a>  
+    <a href="#tutorials">Tutorials</a>  
+    <a href="#contact">Contact</a>  
+  </nav>  
+</header>  <div class="container">  <section class="profile" id="about">  
+  <img src="Isang.jpg">    <!-- ADDED -->    <h1 id="welcome-text"></h1>  
+  <div id="sparkles"></div>    <h2>Jessa Lopez Hilardino</h2>  
+  <p>  
+    👋 Hello! I'm Jessa Hilardino, a Bachelor of Science in Information Technology (BSIT) student who is passionate about technology, creativity, and innovation. I enjoy exploring digital design and UI/UX development using HTML, CSS, Figma, and Canva. My goal is to grow as a developer and create meaningful and user-friendly systems.  
+  </p>  
+</section>  <section class="skills" id="skills">  
+  <h3>My Skills</h3>  
+  <div class="skill-list">  
+    <div class="skill">HTML</div>  
+    <div class="skill">CSS</div>  
+    <div class="skill">Figma</div>  
+    <div class="skill">Canva</div>  
+    <div class="skill">UI/UX</div>  
+  </div>  
+</section>  <section class="photos" id="photos">  
+  <h3>My Photos</h3>  
+  <div class="photo-gallery">  
+    <img src="Jess.jpg">  
+    <img src="Meee.jpg">  
+    <img src="Miss jezz.jpg">  
+  </div>  
+</section>  <section class="skills" id="resume">  
+  <h3>My Resume</h3>  
+  <div class="output-card">  
+    <button onclick="window.open('Resume.pdf','_blank')">View Resume</button>  
+    <br><br>  
+    <a href="Resume.pdf" download>  
+      <button>Download Resume</button>  
+    </a>  
+  </div>  
+</section>  <section class="skills" id="certificates">  
+  <h3>My Certificates</h3>  
+  <div class="output-card">  
+    <img src="Js.png">  
+    <h4>HTML & CSS Training</h4>  
+  </div>  
+  <div class="output-card">  
+    <img src="Ps.png">  
+  </div>  
+  <div class="output-card">  
+    <img src="Ln.png">  
+  </div>  
+</section>  <section class="skills" id="outputs">  
+  <h3>My Outputs</h3>  
+  <div class="output-gallery">  
+    <img src="lala.jpg">  
+    <img src="tshirt.jpg">  
+    <img src="bamz.jpg">  
+  </div>  
+</section>  <section class="tutorials" id="tutorials">  
+  <h3>YouTube Tutorials</h3>  
+  <iframe src="https://www.youtube.com/embed/k7ELO356Npo"></iframe>  
+  <iframe src="https://www.youtube.com/embed/GQK9VQADYCU"></iframe>  
+  <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ"></iframe>  
+</section>  <section class="contact" id="contact">  
+  <h3>Contact Me</h3>  
+  <p>  
+    <a href="https://facebook.com">Facebook</a> |  
+    <a href="https://instagram.com">Instagram</a> |  
+    <a href="https://github.com">GitHub</a>  
+  </p>    <form onsubmit="sendMessage(event)">  
+    <input type="text" placeholder="First Name" required>  
+    <input type="text" placeholder="Last Name" required>  
+    <input type="email" placeholder="Email" required>  
+    <textarea rows="4" placeholder="Message" required></textarea>  
+    <button type="submit">Send</button>  
+  </form>  
+</section>  </div>  <footer>  
+  © 2025 My Portfolio | 💜 Jessa Hilardino  
+</footer>  <script>  
+  
+/* SOUND */  
+const sound = new Audio("https://www.soundjay.com/mechanical/keyboard-1.mp3");  
+  
+/* TYPING */  
+const text = "Welcome to My Portfolio 💜";  
+let i = 0, del = false;  
+  
+function type(){  
+  const el = document.getElementById("welcome-text");  
+  
+  sound.currentTime = 0;  
+  sound.play();  
+  
+  if(!del){  
+    el.innerHTML = text.substring(0,i++);  
+    if(i>text.length){del=true;setTimeout(type,1500);return;}  
+  }else{  
+    el.innerHTML = text.substring(0,i--);  
+    if(i<0)del=false;  
+  }  
+  
+  setTimeout(type,del?40:80);  
+}  
+  
+/* SPARKLES */  
+function sparkles(){  
+  const c=document.getElementById("sparkles");  
+  for(let j=0;j<20;j++){  
+    let s=document.createElement("div");  
+    s.className="sparkle";  
+    s.style.top=Math.random()*100+"%";  
+    s.style.left=Math.random()*100+"%";  
+    c.appendChild(s);  
+  }  
+}  
+  
+window.onload=()=>{type();sparkles();};  
+  
+function sendMessage(event) {  
+  event.preventDefault();  
+  alert("Message sent successfully 💜");  
+}  
+  
+</script>  <style>  
+  
+/* GOOGLE FONT */  
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');  
+  
+/* BODY */  
+body {  
+  margin: 0;  
+  font-family: 'Poppins', sans-serif;  
+  color: #2d1b3d;  
+  overflow-x: hidden;  
+  background: linear-gradient(135deg, #c084fc, #a855f7, #7c3aed);  
+}  
+  
+/* GLASSMORPHISM BASE */  
+header, .skills, .output-card, .contact, footer {  
+  background: rgba(255, 255, 255, 0.15);  
+  backdrop-filter: blur(15px);  
+  border: 1px solid rgba(255,255,255,0.2);  
+}  
+  
+/* FLOATING BG */  
+body::before {  
+  content: "";  
+  position: fixed;  
+  width: 200%;  
+  height: 200%;  
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 20%, transparent 20%) repeat;  
+  background-size: 120px 120px;  
+  animation: moveBg 25s linear infinite;  
+  z-index: -1;  
+}  
+  
+@keyframes moveBg {  
+  from { transform: translate(0,0); }  
+  to { transform: translate(-200px,-200px); }  
+}  
+  
+h1, h2, h3 {  
+  color: white;  
+}  
+  
+/* HEADER */  
+header {  
+  padding: 15px;  
+  text-align: center;  
+  position: sticky;  
+  top: 0;  
+}  
+  
+nav a {  
+  color: white;  
+  margin: 0 12px;  
+  text-decoration: none;  
+  font-weight: 600;  
+}  
+  
+/* CONTAINER */  
+.container {  
+  width: 90%;  
+  max-width: 900px;  
+  margin: auto;  
+}  
+  
+/* PROFILE */  
+.profile {  
+  text-align: center;  
+  padding: 40px 20px;  
+}  
+  
+.profile img {  
+  width: 120px;  
+  height: 120px;  
+  border-radius: 50%;  
+  border: 2px solid white;  
+}  
+  
+/* RAINBOW TEXT */  
+#welcome-text {  
+  font-size: 30px;  
+  background: linear-gradient(270deg, red, orange, yellow, green, blue, violet);  
+  background-size: 1000%;  
+  -webkit-background-clip: text;  
+  -webkit-text-fill-color: transparent;  
+  animation: rainbow 5s infinite;  
+  border-right: 3px solid white;  
+  display: inline-block;  
+}  
+  
+@keyframes rainbow {  
+  0% {background-position:0%}  
+  100% {background-position:100%}  
+}  
+  
+/* SPARKLES */  
+.sparkle {  
+  position: absolute;  
+  width: 6px;  
+  height: 6px;  
+  background: white;  
+  border-radius: 50%;  
+  animation: sparkleAnim 2s infinite;  
+}  
+  
+@keyframes sparkleAnim {  
+  0% {opacity:1; transform: scale(1);}  
+  100% {opacity:0; transform: scale(2);}  
+}  
+  
+/* CARDS */  
+.skills, .output-card, .contact {  
+  border-radius: 18px;  
+  padding: 20px;  
+  margin-bottom: 30px;  
+}  
+  
+/* BUTTON */  
+button {  
+  background: linear-gradient(45deg, #fff, #ddd);  
+  color: black;  
+  border: none;  
+  padding: 8px 15px;  
+  border-radius: 8px;  
+}  
+  
+/* FOOTER */  
+footer {  
+  text-align: center;  
+  padding: 10px;  
+}  
+    
+ const form = document.querySelector("form");  
+const successMsg = document.getElementById("success-msg");  
+  
+form.addEventListener("submit", async function(e) {  
+  e.preventDefault();  
+  const data = new FormData(form);  
+  
+  const response = await fetch(form.action, {  
+    method: form.method,  
+    body: data,  
+    headers: { 'Accept': 'application/json' }  
+  });  
+  
+  if (response.ok) {  
+    successMsg.style.display = "block";  
+    form.reset();  
+  }  
+});  
+  
+<!DOCTYPE html>  
+<html>  
+<head>  
+  <title>Admin Inbox</title>  
+</head>  
+<body>  
+  
+<h2>📥 Messages Inbox</h2>  
+<div id="list"></div>  
+  
+<script type="module">  
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";  
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";  
+  
+// 🔴 SAME CONFIG SA INDEX  
+const firebaseConfig = {  
+  apiKey: "XXXX",  
+  authDomain: "XXXX",  
+  projectId: "XXXX",  
+};  
+  
+const app = initializeApp(firebaseConfig);  
+const db = getFirestore(app);  
+  
+async function loadMessages(){  
+  const querySnapshot = await getDocs(collection(db, "messages"));  
+  const list = document.getElementById("list");  
+  
+  querySnapshot.forEach(doc => {  
+    const msg = doc.data();  
+  
+    list.innerHTML += `  
+      <div style="background:#eee; padding:10px; margin:10px; border-radius:10px;">  
+        <b>${msg.firstName} ${msg.lastName}</b><br>  
+        📧 ${msg.email}<br>  
+        💬 ${msg.message}  
+      </div>  
+    `;  
+  });  
+}  
+  
+loadMessages();  
+</script>  emailjs.init("YOUR_PUBLIC_KEY");
 
-<style>
+emailjs.send("YOUR_SERVICE_ID","YOUR_TEMPLATE_ID",{
 
-/* GOOGLE FONT */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
-
-/* BACKGROUND ANIMATION */
-body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  color: #2d1b3d;
-  overflow-x: hidden;
-  background: linear-gradient(135deg, #f3e8ff, #e9d5ff, #ddd6fe);
-}
-
-/* FLOATING BUBBLES */
-body::before {
-  content: "";
-  position: fixed;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(168,85,247,0.15) 20%, transparent 20%) repeat;
-  background-size: 100px 100px;
-  animation: moveBg 20s linear infinite;
-  z-index: -1;
-}
-
-@keyframes moveBg {
-  from { transform: translate(0,0); }
-  to { transform: translate(-200px,-200px); }
-}
-
-h1, h2, h3 {
-  color: #7c3aed;
-}
-
-/* HEADER */
-header {
-  background: rgba(255,255,255,0.7);
-  padding: 15px;
-  text-align: center;
-  position: sticky;
-  top: 0;
-  backdrop-filter: blur(10px);
-}
-
-nav a {
-  color: #5b21b6;
-  margin: 0 12px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: 0.3s;
-}
-
-nav a:hover {
-  color: #a855f7;
-  text-shadow: 0 0 10px #c084fc;
-}
-
-/* CONTAINER */
-.container {
-  width: 90%;
-  max-width: 900px;
-  margin: auto;
-}
-
-/* CARDS */
-.skills, .output-card, .contact {
-  background: rgba(255,255,255,0.85);
-  border-radius: 18px;
-  padding: 20px;
-  margin-bottom: 30px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  transition: 0.4s;
-}
-
-.skills:hover, .output-card:hover {
-  transform: translateY(-5px) scale(1.01);
-  box-shadow: 0 10px 25px rgba(168,85,247,0.3);
-}
-
-/* PROFILE */
-.profile {
-  text-align: center;
-  padding: 40px 20px;
-  animation: fadeIn 1.5s ease;
-}
-
-.profile img {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  border: 2px solid #a855f7;
-  object-fit: cover;
-  transition: 0.4s;
-}
-
-.profile img:hover {
-  transform: scale(1.1);
-}
-
-/* SKILLS */
-.skill-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-}
-
-.skill {
-  background: #ede9fe;
-  border: 1px solid #c4b5fd;
-  padding: 8px 15px;
-  border-radius: 10px;
-  transition: 0.3s;
-}
-
-.skill:hover {
-  background: #a855f7;
-  color: white;
-  transform: scale(1.1);
-}
-
-/* PHOTOS */
-.photo-gallery, .output-gallery {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 15px;
-}
-
-.photo-gallery img,
-.output-gallery img {
-  width: 180px;
-  height: 120px;
-  border-radius: 12px;
-  object-fit: cover;
-  transition: 0.4s;
-}
-
-.photo-gallery img:hover,
-.output-gallery img:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 15px #c084fc;
-}
-
-/* CERTIFICATES */
-.output-card img {
-  width: 100%;
-  border-radius: 10px;
-  margin-bottom: 10px;
-}
-
-/* VIDEOS */
-.tutorials iframe {
-  width: 300px;
-  height: 180px;
-  margin: 10px;
-  border-radius: 12px;
-  transition: 0.3s;
-}
-
-.tutorials iframe:hover {
-  transform: scale(1.05);
-}
-
-/* BUTTON */
-button {
-  background: linear-gradient(45deg, #a855f7, #7c3aed);
-  color: white;
-  border: none;
-  padding: 8px 15px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-button:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 10px #c084fc;
-}
-
-/* INPUT */
-input, textarea {
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #c4b5fd;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-input:focus, textarea:focus {
-  outline: none;
-  border-color: #a855f7;
-  box-shadow: 0 0 8px #c084fc;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-/* FOOTER */
-footer {
-  text-align: center;
-  padding: 10px;
-  background: rgba(255,255,255,0.7);
-}
-
-/* FADE ANIMATION */
-@keyframes fadeIn {
-  from {opacity: 0; transform: translateY(20px);}
-  to {opacity: 1; transform: translateY(0);}
-}
-
-</style>
-</head>
-
-<body>
-
-<header>
-  <nav>
-    <a href="#about">Home</a>
-    <a href="#skills">Skills</a>
-    <a href="#photos">Photos</a>
-    <a href="#resume">Resume</a>
-    <a href="#certificates">Certificates</a>
-    <a href="#outputs">Outputs</a>
-    <a href="#tutorials">Tutorials</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
-
-<div class="container">
-
-<section class="profile" id="about">
-  <img src="Isang.jpg">
-  <h2>Jessa Lopez Hilardino</h2>
-  <p>
-    👋 Hello! I'm Jessa Hilardino, a Bachelor of Science in Information Technology (BSIT) student who is passionate about technology, creativity, and innovation. I enjoy exploring digital design and UI/UX development using HTML, CSS, Figma, and Canva. My goal is to grow as a developer and create meaningful and user-friendly systems.
-  </p>
-</section>
-
-<section class="skills" id="skills">
-  <h3>My Skills</h3>
-  <div class="skill-list">
-    <div class="skill">HTML</div>
-    <div class="skill">CSS</div>
-    <div class="skill">Figma</div>
-    <div class="skill">Canva</div>
-    <div class="skill">UI/UX</div>
-  </div>
-</section>
-
-<section class="photos" id="photos">
-  <h3>My Photos</h3>
-  <div class="photo-gallery">
-    <img src="Jess.jpg">
-    <img src="Meee.jpg">
-    <img src="Miss jezz.jpg">
-  </div>
-</section>
-
-<section class="skills" id="resume">
-  <h3>My Resume</h3>
-  <div class="output-card">
-    <button onclick="window.open('resume.pdf')">View Resume</button>
-  </div>
-</section>
-
-<section class="skills" id="certificates">
-  <h3>My Certificates</h3>
-  <div class="output-card">
-    <img src="Js.png">
-    <h4>HTML & CSS Training</h4>
-  </div>
-  <div class="output-card">
-    <img src="Ps.png">
-  </div>
-  <div class="output-card">
-    <img src="Ln.png">
-  </div>
-</section>
-
-<section class="skills" id="outputs">
-  <h3>My Outputs</h3>
-  <div class="output-gallery">
-    <img src="lala.jpg">
-    <img src="tshirt.jpg">
-    <img src="bamz.jpg">
-  </div>
-</section>
-
-<section class="tutorials" id="tutorials">
-  <h3>YouTube Tutorials</h3>
-  <iframe src="https://www.youtube.com/embed/k7ELO356Npo"></iframe>
-  <iframe src="https://www.youtube.com/embed/GQK9VQADYCU"></iframe>
-  <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ"></iframe>
-</section>
-
-<section class="contact" id="contact">
-  <h3>Contact Me</h3>
-  <p>
-    <a href="https://facebook.com">Facebook</a> |
-    <a href="https://instagram.com">Instagram</a> |
-    <a href="https://github.com">GitHub</a>
-  </p>
-
-  <form onsubmit="sendMessage(event)">
-    <input type="text" placeholder="First Name" required>
-    <input type="text" placeholder="Last Name" required>
-    <input type="email" placeholder="Email" required>
-    <textarea rows="4" placeholder="Message" required></textarea>
-    <button type="submit">Send</button>
-  </form>
-</section>
-
-</div>
-
-<footer>
-  © 2025 My Portfolio | 💜 Jessa Hilardino
-</footer>
-
-<script>
-function sendMessage(event) {
-  event.preventDefault();
-  alert("Message sent successfully 💜");
-}
-</script>
-
-</body>
-</html>
+</style>  
+</html>   
