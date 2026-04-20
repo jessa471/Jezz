@@ -1,290 +1,339 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Portfolio | Jessa Hilardino</title>
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      background: linear-gradient(180deg, #cdefff, #e8f7ff);
-      color: #333;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Portfolio | Jessa Hilardino</title>
 
-    h1, h2, h3 {
-      color: #205c58;
-      margin: 10px 0;
-    }
+<style>
 
-    a {
-      color: #1e8076;
-      text-decoration: none;
-    }
+/* GOOGLE FONT */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
 
-    a:hover {
-      text-decoration: underline;
-    }
+/* BACKGROUND ANIMATION */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  color: #2d1b3d;
+  overflow-x: hidden;
+  background: linear-gradient(135deg, #f3e8ff, #e9d5ff, #ddd6fe);
+}
 
-    .container {
-      width: 90%;
-      max-width: 900px;
-      margin: 0 auto;
-    }
+/* FLOATING BUBBLES */
+body::before {
+  content: "";
+  position: fixed;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(168,85,247,0.15) 20%, transparent 20%) repeat;
+  background-size: 100px 100px;
+  animation: moveBg 20s linear infinite;
+  z-index: -1;
+}
 
-    header {
-      background: linear-gradient(90deg, #8ad9c5, #b0e0f9);
-      padding: 15px;
-      text-align: center;
-      border-bottom-left-radius: 20px;
-      border-bottom-right-radius: 20px;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
+@keyframes moveBg {
+  from { transform: translate(0,0); }
+  to { transform: translate(-200px,-200px); }
+}
 
-    nav a {
-      margin: 0 15px;
-      font-weight: 600;
-      color: #205c58;
-    }
+h1, h2, h3 {
+  color: #7c3aed;
+}
 
-    .profile {
-      text-align: center;
-      padding: 40px 20px;
-    }
+/* HEADER */
+header {
+  background: rgba(255,255,255,0.7);
+  padding: 15px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  backdrop-filter: blur(10px);
+}
 
-    .profile img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      border: 4px solid #9fe0c9;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
+nav a {
+  color: #5b21b6;
+  margin: 0 12px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
 
-    .skills {
-      background: #ffffffb3;
-      border-radius: 20px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-      padding: 20px;
-      text-align: center;
-      margin-bottom: 30px;
-    }
+nav a:hover {
+  color: #a855f7;
+  text-shadow: 0 0 10px #c084fc;
+}
 
-    .skill-list {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-    }
+/* CONTAINER */
+.container {
+  width: 90%;
+  max-width: 900px;
+  margin: auto;
+}
 
-    .skill {
-      background: #e8faf7;
-      color: #205c58;
-      border-radius: 10px;
-      padding: 8px 15px;
-      font-weight: 500;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
+/* CARDS */
+.skills, .output-card, .contact {
+  background: rgba(255,255,255,0.85);
+  border-radius: 18px;
+  padding: 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: 0.4s;
+}
 
-    .photo-gallery {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-      margin-bottom: 40px;
-    }
+.skills:hover, .output-card:hover {
+  transform: translateY(-5px) scale(1.01);
+  box-shadow: 0 10px 25px rgba(168,85,247,0.3);
+}
 
-    .photo-gallery img {
-      width: 180px;
-      height: 120px;
-      border-radius: 15px;
-      object-fit: cover;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
+/* PROFILE */
+.profile {
+  text-align: center;
+  padding: 40px 20px;
+  animation: fadeIn 1.5s ease;
+}
 
-    .tutorials {
-      text-align: center;
-      margin-bottom: 40px;
-    }
+.profile img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 2px solid #a855f7;
+  object-fit: cover;
+  transition: 0.4s;
+}
 
-    .tutorials iframe {
-      width: 300px;
-      height: 180px;
-      border-radius: 15px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      margin: 10px;
-    }
+.profile img:hover {
+  transform: scale(1.1);
+}
 
-    .outputs {
-      text-align: center;
-      margin-bottom: 50px;
-    }
+/* SKILLS */
+.skill-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
 
-    .output-card {
-      background: #ffffffb3;
-      border-radius: 20px;
-      padding: 20px;
-      width: 250px;
-      margin: 15px auto;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
+.skill {
+  background: #ede9fe;
+  border: 1px solid #c4b5fd;
+  padding: 8px 15px;
+  border-radius: 10px;
+  transition: 0.3s;
+}
 
-    .output-card img {
-      width: 50px;
-      margin-bottom: 10px;
-    }
+.skill:hover {
+  background: #a855f7;
+  color: white;
+  transform: scale(1.1);
+}
 
-    .output-card button {
-      background: #1e8076;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      padding: 8px 15px;
-      cursor: pointer;
-      margin-top: 10px;
-    }
+/* PHOTOS */
+.photo-gallery, .output-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
 
-    .contact {
-      background: #ffffffb3;
-      border-radius: 20px;
-      padding: 30px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      margin-bottom: 30px;
-    }
+.photo-gallery img,
+.output-gallery img {
+  width: 180px;
+  height: 120px;
+  border-radius: 12px;
+  object-fit: cover;
+  transition: 0.4s;
+}
 
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      width: 80%;
-      max-width: 400px;
-      margin: 0 auto;
-    }
+.photo-gallery img:hover,
+.output-gallery img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px #c084fc;
+}
 
-    input, textarea {
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      padding: 10px;
-      font-family: 'Poppins', sans-serif;
-    }
+/* CERTIFICATES */
+.output-card img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
 
-    button.submit {
-      background: #1e8076;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      padding: 10px;
-      font-size: 15px;
-      cursor: pointer;
-    }
+/* VIDEOS */
+.tutorials iframe {
+  width: 300px;
+  height: 180px;
+  margin: 10px;
+  border-radius: 12px;
+  transition: 0.3s;
+}
 
-    button.submit:hover {
-      background: #16695f;
-    }
+.tutorials iframe:hover {
+  transform: scale(1.05);
+}
 
-    footer {
-      text-align: center;
-      font-size: 13px;
-      padding: 10px;
-      background: #1e8076;
-      color: white;
-      border-top-left-radius: 20px;
-      border-top-right-radius: 20px;
-    }
-  </style>
+/* BUTTON */
+button {
+  background: linear-gradient(45deg, #a855f7, #7c3aed);
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 10px #c084fc;
+}
+
+/* INPUT */
+input, textarea {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #c4b5fd;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border-color: #a855f7;
+  box-shadow: 0 0 8px #c084fc;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 10px;
+  background: rgba(255,255,255,0.7);
+}
+
+/* FADE ANIMATION */
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+</style>
 </head>
+
 <body>
 
-  <header>
-    <nav>
-      <a href="#about">Home</a>
-      <a href="#skills">Skills</a>
-      <a href="#photos">Photos</a>
-      <a href="#tutorials">Tutorials</a>
-      <a href="#outputs">Outputs</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
+<header>
+  <nav>
+    <a href="#about">Home</a>
+    <a href="#skills">Skills</a>
+    <a href="#photos">Photos</a>
+    <a href="#resume">Resume</a>
+    <a href="#certificates">Certificates</a>
+    <a href="#outputs">Outputs</a>
+    <a href="#tutorials">Tutorials</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
 
-  <div class="container">
-    <section class="profile" id="about">
-      <!-- Make sure the image exists in the same folder or use an online image URL -->
-      <img src="https://i.ibb.co/Z6hwvjq/Jessa.jpg" alt="Jessa Hilardino">
-      <h2>Jessa Lopez Hilardino</h2>
-      <p>👋 Hello! I'm Jessa Hilardino, a BSIT student passionate about technology, creativity, and innovation. I enjoy designing and exploring projects that enhance my skills in digital creation and development.</p>
-    </section>
+<div class="container">
 
-    <section class="skills" id="skills">
-      <h3>My Skills</h3>
-      <div class="skill-list">
-        <div class="skill">HTML</div>
-        <div class="skill">CSS</div>
-        <div class="skill">Figma Design</div>
-        <div class="skill">Canva</div>
-        <div class="skill">UI/UX Design</div>
-        <div class="skill">Creativity</div>
-      </div>
-    </section>
+<section class="profile" id="about">
+  <img src="Isang.jpg">
+  <h2>Jessa Lopez Hilardino</h2>
+  <p>
+    👋 Hello! I'm Jessa Hilardino, a Bachelor of Science in Information Technology (BSIT) student who is passionate about technology, creativity, and innovation. I enjoy exploring digital design and UI/UX development using HTML, CSS, Figma, and Canva. My goal is to grow as a developer and create meaningful and user-friendly systems.
+  </p>
+</section>
 
-    <section class="photos" id="photos">
-      <h3>My Photos</h3>
-      <div class="photo-gallery">
-        <img src="https://Jess.jpg" alt="Photo 1">
-        <img src="https://Meee.jpg" alt="Photo 2">
-        <img src="https://Miss jezz.jpg" alt="Photo 3">
-      </div>
-    </section>
-
-    <section class="tutorials" id="tutorials">
-      <h3>Tutorial Videos</h3>
-      <!-- Correct YouTube embed links -->
-      <iframe src="https://www.youtube.com/embed/k7ELO356Npo" frameborder="0" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/embed/GQK9VQADYCU" frameborder="0" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/embed/6G-8jMy4kHo" frameborder="0" allowfullscreen></iframe>
-    </section>
-
-    <section class="outputs" id="outputs">
-      <h3>My Outputs</h3>
-
-      <div class="output-card">
-        <img src="https://cdn.iconscout.com/icon/free/png-256/free-canva-3521473-2944929.png" alt="Canva Icon">
-        <h4>Portfolio in Canva</h4>
-        <p>My personal portfolio design made using Canva.</p>
-        <button onclick="window.open('https://www.canva.com/design/DAGv09hfk8g/Ydogp4k3CLb4wfFmGjTFmA/edit', '_blank')">View Output</button>
-      </div>
-
-      <div class="output-card">
-        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968705.png" alt="Figma Icon">
-        <h4>Portfolio in Figma</h4>
-        <p>Prototype portfolio created in Figma.</p>
-        <button onclick="window.open('https://www.figma.com/proto/gl9eTwmoQInorJbhVzIPcm/final?node-id=0-1', '_blank')">View Output</button>
-      </div>
-
-      <div class="output-card">
-        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968705.png" alt="Figma Icon">
-        <h4>Figma E-Commerce</h4>
-        <p>An e-commerce website UI design using Figma.</p>
-        <button onclick="window.open('https://www.figma.com/proto/r4KH7Ea4RPCRBphosocgKH/Untitled?node-id=0-1', '_blank')">View Output</button>
-      </div>
-    </section>
-
-    <section class="contact" id="contact">
-      <h3>Contact Me</h3>
-      <form>
-        <input type="text" placeholder="First Name">
-        <input type="text" placeholder="Last Name">
-        <input type="email" placeholder="Email">
-        <textarea rows="4" placeholder="Your Message"></textarea>
-        <button class="submit" type="submit">Send</button>
-      </form>
-    </section>
-
+<section class="skills" id="skills">
+  <h3>My Skills</h3>
+  <div class="skill-list">
+    <div class="skill">HTML</div>
+    <div class="skill">CSS</div>
+    <div class="skill">Figma</div>
+    <div class="skill">Canva</div>
+    <div class="skill">UI/UX</div>
   </div>
+</section>
 
-  <footer>
-    © 2025 My Portfolio | Designed with 💙 by Jessa Hilardino
-  </footer>
+<section class="photos" id="photos">
+  <h3>My Photos</h3>
+  <div class="photo-gallery">
+    <img src="Jess.jpg">
+    <img src="Meee.jpg">
+    <img src="Miss jezz.jpg">
+  </div>
+</section>
+
+<section class="skills" id="resume">
+  <h3>My Resume</h3>
+  <div class="output-card">
+    <button onclick="window.open('resume.pdf')">View Resume</button>
+  </div>
+</section>
+
+<section class="skills" id="certificates">
+  <h3>My Certificates</h3>
+  <div class="output-card">
+    <img src="Js.png">
+    <h4>HTML & CSS Training</h4>
+  </div>
+  <div class="output-card">
+    <img src="Ps.png">
+  </div>
+  <div class="output-card">
+    <img src="Ln.png">
+  </div>
+</section>
+
+<section class="skills" id="outputs">
+  <h3>My Outputs</h3>
+  <div class="output-gallery">
+    <img src="lala.jpg">
+    <img src="tshirt.jpg">
+    <img src="bamz.jpg">
+  </div>
+</section>
+
+<section class="tutorials" id="tutorials">
+  <h3>YouTube Tutorials</h3>
+  <iframe src="https://www.youtube.com/embed/k7ELO356Npo"></iframe>
+  <iframe src="https://www.youtube.com/embed/GQK9VQADYCU"></iframe>
+  <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ"></iframe>
+</section>
+
+<section class="contact" id="contact">
+  <h3>Contact Me</h3>
+  <p>
+    <a href="https://facebook.com">Facebook</a> |
+    <a href="https://instagram.com">Instagram</a> |
+    <a href="https://github.com">GitHub</a>
+  </p>
+
+  <form onsubmit="sendMessage(event)">
+    <input type="text" placeholder="First Name" required>
+    <input type="text" placeholder="Last Name" required>
+    <input type="email" placeholder="Email" required>
+    <textarea rows="4" placeholder="Message" required></textarea>
+    <button type="submit">Send</button>
+  </form>
+</section>
+
+</div>
+
+<footer>
+  © 2025 My Portfolio | 💜 Jessa Hilardino
+</footer>
+
+<script>
+function sendMessage(event) {
+  event.preventDefault();
+  alert("Message sent successfully 💜");
+}
+</script>
 
 </body>
 </html>
